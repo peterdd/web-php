@@ -63,11 +63,11 @@
     <div class="container footer-content">
       <div class="row-fluid">
       <ul class="footmenu">
-        <li><a href="/copyright.php">Copyright &copy; 2001-<?php echo date('Y'); ?> The PHP Group</a></li>
-        <li><a href="/my.php">My PHP.net</a></li>
-        <li><a href="/contact.php">Contact</a></li>
-        <li><a href="/sites.php">Other PHP.net sites</a></li>
-        <li><a href="/privacy.php">Privacy policy</a></li>
+        <li><a href="copyright.php">Copyright &copy; 2001-<?php echo date('Y'); ?> The PHP Group</a></li>
+        <li><a href="my.php">My PHP.net</a></li>
+        <li><a href="contact.php">Contact</a></li>
+        <li><a href="sites.php">Other PHP.net sites</a></li>
+        <li><a href="privacy.php">Privacy policy</a></li>
 <?php if (!empty($_SERVER['BASE_PAGE'])): ?>
         <li><a href="https://github.com/php/web-php/blob/master/<?php echo urlencode($_SERVER['BASE_PAGE']); ?>">View Source</a></li>
 <?php endif; ?>
@@ -90,11 +90,11 @@
  $jsfiles = array("ext/modernizr.js", "ext/hogan-2.0.0.min.js", "ext/typeahead.min.js", "ext/mousetrap.min.js", "search.js", "common.js");
  foreach ($jsfiles as $filename) {
    $path = dirname(__DIR__).'/js/'.$filename;
-   echo '<script src="/cached.php?t=' . @filemtime($path) . '&amp;f=/js/' . $filename . '"></script>'."\n";
+   echo '<script src="cached.php?t=' . @filemtime($path) . '&amp;f=js/' . $filename . '"></script>'."\n";
  }
 ?>
 
-<a id="toTop" href="javascript:;"><span id="toTopHover"></span><img width="40" height="40" alt="To Top" src="/images/to-top@2x.png"></a>
+<a id="toTop" href="javascript:;"><span id="toTopHover"></span><img width="40" height="40" alt="To Top" src="images/to-top@2x.png"></a>
 
 </body>
 </html>
