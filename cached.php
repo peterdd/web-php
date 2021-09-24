@@ -13,25 +13,25 @@
 $_SERVER['BASE_PAGE'] = 'cached.php';
 include_once 'include/prepend.inc';
 
-if (!isset($_GET["f"])) {
-    header("Location: https://www.php.net/");
+if (!isset($_GET['f'])) {
+    header('Location: '.$MYSITE);
     exit;
 }
-$pwd = realpath($_SERVER["DOCUMENT_ROOT"]);
-$abs = $pwd. "/" .(string)$_GET["f"];
+
+$pwd = realpath(__FILE__);
+$abs = dirname($pwd). '/' .(string)$_GET['f'];
 $abs = realpath($abs);
 
-if (strncmp($abs, $pwd, strlen($pwd)) != 0) {
-    header("Location: https://www.php.net/" . strtr($_GET["f"],array("\r"=>"","\n"=>"")));
-    exit;
-}
+#if (strncmp($abs, $pwd, strlen($pwd)) != 0) {
+#    header("Location: https://www.php.net/" . strtr($_GET['f'],array("\r"=>'',"\n"=>'')));
+#    exit;
+#}
 
-if (isset($_GET["t"])) {
-    $time = (int)$_GET["t"];
+if (isset($_GET['t'])) {
+    $time = (int)$_GET['t'];
 } else {
     $time = filemtime($abs);
 }
-
 
 $tsstring = gmdate("D, d M Y H:i:s ", $time) . "GMT";
 if (isset($_SERVER["HTTP_IF_MODIFIED_SINCE"]) &&
