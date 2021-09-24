@@ -1,9 +1,9 @@
 <?php
 $css_files = array(
-    '/fonts/Fira/fira.css',
-    '/fonts/Font-Awesome/css/fontello.css',
-    '/styles/theme-base.css',
-    '/styles/theme-medium.css',
+    'fonts/Fira/fira.css',
+    'fonts/Font-Awesome/css/fontello.css',
+    'styles/theme-base.css',
+    'styles/theme-medium.css',
 );
 
 if (isset($config['css'])) {
@@ -16,8 +16,8 @@ if (isset($config["css_overwrite"])) {
 foreach($css_files as $filename) {
     // files that do not start with / are assumed to be located in the /styles
     // directory
-    if ($filename[0] !== '/') {
-        $filename = "/styles/$filename";
+    if ($filename === 'home.css') {
+        $filename = "styles/$filename";
     }
     $path = dirname(__DIR__) . $filename;
     $CSS[$filename] = @filemtime($path);
@@ -62,7 +62,7 @@ if (!isset($config["languages"])) {
  <link rel="alternate" type="application/atom+xml" href="<?php echo $MYSITE ?>feed.atom" title="PHP: Hypertext Preprocessor">
 
 <?php if (isset($_SERVER['BASE_PAGE'])): ?>
- <link rel="canonical" href="https://www.php.net/<?php echo $_SERVER['BASE_PAGE']?>">
+ <link rel="canonical" href="<?php echo $MYSITE.$_SERVER['BASE_PAGE']?>">
 <?php if ($shortname): ?>
  <link rel="shorturl" href="<?php echo $shorturl ?>">
  <link rel="alternate" href="<?php echo $shorturl ?>" hreflang="x-default">
@@ -78,7 +78,7 @@ if (!isset($config["languages"])) {
 <?php endforeach ?>
 
 <?php foreach($CSS as $filename => $modified): ?>
-<link rel="stylesheet" type="text/css" href="/cached.php?t=<?php echo $modified?>&amp;f=<?php echo $filename?>" media="screen">
+<link rel="stylesheet" type="text/css" href="cached.php?t=<?php echo $modified?>&amp;f=<?php echo $filename?>" media="screen">
 <?php endforeach ?>
 
  <!--[if lte IE 7]>
@@ -110,17 +110,17 @@ if (!isset($config["languages"])) {
 
 <nav id="head-nav" class="navbar navbar-fixed-top">
   <div class="navbar-inner clearfix">
-    <a href="/" class="brand"><img src="/images/logos/php-logo.svg" width="48" height="24" alt="php"></a>
+    <a href="" class="brand"><img src="/images/logos/php-logo.svg" width="48" height="24" alt="php"></a>
     <div id="mainmenu-toggle-overlay"></div>
     <input type="checkbox" id="mainmenu-toggle">
     <ul class="nav">
-      <li class="<?php echo $curr == "downloads" ? "active" : ""?>"><a href="/downloads">Downloads</a></li>
-      <li class="<?php echo $curr == "docs" ? "active" : ""?>"><a href="/docs.php">Documentation</a></li>
-      <li class="<?php echo $curr == "community" ? "active" : ""?>"><a href="/get-involved" >Get Involved</a></li>
-      <li class="<?php echo $curr == "help" ? "active" : ""?>"><a href="/support">Help</a></li>
+      <li class="<?php echo $curr == "downloads" ? "active" : ""?>"><a href="downloads.php">Downloads</a></li>
+      <li class="<?php echo $curr == "docs" ? "active" : ""?>"><a href="docs.php">Documentation</a></li>
+      <li class="<?php echo $curr == "community" ? "active" : ""?>"><a href="get-involved.php" >Get Involved</a></li>
+      <li class="<?php echo $curr == "help" ? "active" : ""?>"><a href="support.php">Help</a></li>
       <li class="<?php echo $curr === "php8" ? "active" : "" ?>">
-        <a href="/releases/8.0/index.php">
-          <img src="/images/php8/logo_php8.svg" alt="php8" height="22" width="60">
+        <a href="releases/8.0/index.php">
+          <img src="images/php8/logo_php8.svg" alt="php8" height="22" width="60">
         </a>
       </li>
     </ul>
