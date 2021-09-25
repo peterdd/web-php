@@ -372,7 +372,7 @@ $(document).ready(function() {
 
                         // do the fetch.
                         $.ajax({
-                            url:      '/images/elephpants.php?count=' + count,
+                            url:      'images/elephpants.php?count=' + count,
                             dataType: 'json',
                             success:  function(data) {
                                 var photo, image;
