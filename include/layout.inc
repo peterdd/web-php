@@ -60,11 +60,15 @@ function highlight_php_trimmed($code, $return = false)
 }
 
 // Stats pages still need this
-function commonHeader($title) { site_header($title); }
+function commonHeader($title) {
+	site_header($title);
+}
 
 
 // Stats pages still need this
-function commonFooter() { site_footer(); }
+function commonFooter(){
+	site_footer();
+}
 
 // Resize the image using the output of make_image()
 function resize_image($img, $width = 1, $height = 1)
@@ -153,7 +157,7 @@ function make_submit($file, $alt = FALSE, $align = FALSE, $extras = FALSE,
 }
 
 // Return a hiperlink to something within the site
-function make_link ($url, $linktext = FALSE, $target = FALSE, $extras = FALSE)
+function make_link($url, $linktext = FALSE, $target = FALSE, $extras = FALSE)
 {
     return sprintf("<a href=\"%s\"%s%s>%s</a>",
         $url,
@@ -172,7 +176,8 @@ function print_link($url, $linktext = FALSE, $target = FALSE, $extras = FALSE)
 // make_popup_link()
 // return a hyperlink to something, within the site, that pops up a new window
 //
-function make_popup_link ($url, $linktext=false, $target=false, $windowprops="", $extras=false) {
+function make_popup_link($url, $linktext=false, $target=false, $windowprops="", $extras=false)
+{
     return sprintf("<a href=\"%s\" target=\"%s\" onclick=\"window.open('%s','%s','%s');return false;\"%s>%s</a>",
         htmlspecialchars($url, ENT_QUOTES | ENT_IGNORE),
         ($target ? $target : "_new"),
@@ -187,7 +192,8 @@ function make_popup_link ($url, $linktext=false, $target=false, $windowprops="",
 // print_popup_link()
 // print a hyperlink to something, within the site, that pops up a new window
 //
-function print_popup_link($url, $linktext=false, $windowprops="", $target=false, $extras=false) {
+function print_popup_link($url, $linktext=false, $windowprops="", $target=false, $extras=false)
+{
     echo make_popup_link($url, $linktext, $windowprops, $target, $extras);
 }
 
@@ -233,7 +239,8 @@ function download_link($file, $title, $showsize = TRUE, $mirror = '')
     }
 }
 
-function sect_to_file($string) {
+function sect_to_file($string)
+{
     $string = strtolower($string);
     $string = str_replace(' ','-',$string);
     $string = str_replace('_','-',$string);
@@ -248,7 +255,8 @@ function sect_to_file($string) {
     else return "$string.php";
 }
 
-function clean($var) {
+function clean($var)
+{
   return htmlspecialchars($var, ENT_QUOTES);
 }
 
@@ -401,16 +409,17 @@ function news_archive_sidebar()
 }
 
 // Print news
-function print_news($news, $dog, $max = 5, $onlyyear = null, $return = false) {
+function print_news($news, $dog, $max = 5, $onlyyear = null, $return = false)
+{
     $retval = array();
     $count = 0;
     $news = $news ? $news : array(); // default to empty array (if no news)
-    foreach($news as $item) {
+    foreach ($news as $item) {
         $ok = false;
 
         // Only print entries in the provided s/dog/cat/ egory
         // If $dog is null, everything matches
-        foreach($item["category"] as $category) {
+        foreach ($item["category"] as $category) {
             if (is_null($dog) || in_array($category["term"], (array)$dog)) {
                 $ok = true;
                 ++$count;
@@ -425,7 +434,7 @@ function print_news($news, $dog, $max = 5, $onlyyear = null, $return = false) {
         }
 
         $image = "";
-        if(isset($item["newsImage"])) {
+        if (isset($item["newsImage"])) {
             $image = news_image($item["newsImage"]["link"], $item["newsImage"]["content"], $item["newsImage"]["title"], false);
         }
 
@@ -433,7 +442,7 @@ function print_news($news, $dog, $max = 5, $onlyyear = null, $return = false) {
         $id = $id["fragment"];
 
         // Find the permlink
-        foreach($item["link"] as $link) {
+        foreach ($item["link"] as $link) {
             if ($link["rel"] === "via") {
                 $permlink = $link["href"];
                 break;
@@ -499,38 +508,37 @@ function site_header($title = '', $config = array())
 
     $config = array_merge($defaults, $config);
 
+    $config['headsup'] = get_news_changes();
 
-    $config["headsup"] = get_news_changes();
-
-    $lang = language_convert($config["lang"]);
-    $curr = $config["current"];
+    $lang = language_convert($config['lang']);
+    $curr = $config['current'];
     $classes = $config['classes'];
 
-    if (isset($_COOKIE["MD"]) || isset($_GET["MD"])) {
-        $classes .= "markdown-content";
-        $config["css_overwrite"] = array("/styles/i-love-markdown.css");
+    if (isset($_COOKIE['MD']) || isset($_GET['MD'])) {
+        $classes .= 'markdown-content';
+        $config['css_overwrite'] = array('styles/i-love-markdown.css');
     }
 
     if (empty($title)) {
         $title = "Hypertext Preprocessor";
     }
 
-    // shorturl; http://wiki.snaplog.com/short_url
-    if (isset($_SERVER['BASE_PAGE']) && $shortname = get_shortname($_SERVER["BASE_PAGE"])) {
-        $shorturl = "https://www.php.net/" . $shortname;
+    // shorturl; http://wiki.snaplog.com/short_url (dead)
+    if (isset($_SERVER['BASE_PAGE']) && $shortname = get_shortname($_SERVER['BASE_PAGE'])) {
+        $shorturl = $MYSITE .'/'. $shortname;
     }
 
-    require __DIR__ ."/header.inc";
+    require __DIR__ .'/header.inc';
 }
 function site_footer($config = array())
 {
     global $MYSITE;
-    require __DIR__ . "/footer.inc";
+    require __DIR__ . '/footer.inc';
 }
 
 function get_news_changes()
 {
-    include __DIR__ . "/pregen-news.inc";
+    include __DIR__ . '/pregen-news.inc';
     $date = date_create($NEWS_ENTRIES[0]["updated"]);
     if (isset($_COOKIE["LAST_NEWS"]) && $_COOKIE["LAST_NEWS"] >= $date->getTimestamp()) {
         return false;
@@ -553,8 +561,9 @@ function get_news_changes()
     return false;
 }
 
-function news_toc($sections = null) {
-    include __DIR__ . "/pregen-news.inc";
+function news_toc($sections = null)
+{
+    include __DIR__ . '/pregen-news.inc';
     $items = array(
         "news" => array(
             "title" => "News",
@@ -586,7 +595,9 @@ function news_toc($sections = null) {
         }
     }
 }
-function doc_toc($lang) {
+
+function doc_toc($lang)
+{
     $file = __DIR__ . "/../manual/$lang/toc/index.inc";
     if (!file_exists($file)) {
         $lang = "en"; // Fallback on english if the translation doesn't exist
@@ -633,16 +644,20 @@ function doc_toc($lang) {
     echo "</dl>";
 
 }
-function doc_toc_list($lang, $index, $file) {
+
+function doc_toc_list($lang, $index, $file)
+{
     include __DIR__ . "/../manual/$lang/toc/$file.inc";
 
     doc_toc_title($lang, $index, $file);
-    foreach($TOC as $entry) {
+    foreach ($TOC as $entry) {
         echo "\t<dd><a href='/manual/$lang/{$entry[0]}'>{$entry[1]}</a></dd>\n";
     }
 }
-function doc_toc_title($lang, $index, $file, $elm = "dt") {
-    foreach($index as $entry) {
+
+function doc_toc_title($lang, $index, $file, $elm = "dt")
+{
+    foreach ($index as $entry) {
         if ($entry[0] == "$file.php") {
             $link  = $entry[0];
             $title = $entry[1];
