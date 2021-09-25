@@ -16,8 +16,8 @@ if (isset($config["css_overwrite"])) {
 foreach($css_files as $filename) {
     // files that do not start with / are assumed to be located in the /styles
     // directory
-    if ($filename === 'home.css') {
-        $filename = "styles/$filename";
+    if ($filename === 'home.css' || $filename === 'php8.css') {
+        $filename = 'styles/'.$filename;
     }
     $path = dirname(__DIR__) . $filename;
     $CSS[$filename] = @filemtime($path);
