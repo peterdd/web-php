@@ -303,7 +303,7 @@
   height: 36px;
   width: 20px;
   margin: auto;
-  background: url("/images/php8/icon_arrow.svg") scroll no-repeat center center / contain transparent;
+  background: url("images/php8/icon_arrow.svg") scroll no-repeat center center / contain transparent;
 }
 
 @media (max-width: 810px) {
