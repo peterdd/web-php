@@ -57,7 +57,7 @@ function language_chooser(string $currentLang): void {
       <form action="" method="get" id="changelang" name="changelang">
         <fieldset>
           <label for="changelang-langs">Change language:</label>
-          <select onchange="location = this.value + \'.php\'" name="lang" id="changelang-langs">
+          <select onchange="location = \''.dirname($_SERVER['SCRIPT_NAME']).'\' + \'/\' + this.value + \'.php\'" name="lang" id="changelang-langs">
 ';
 
     $tab = '            ';
