@@ -1623,7 +1623,7 @@ div.soft-deprecation-notice blockquote.sidebar {
   }
 
   #mainmenu-toggle-overlay {
-    background: #4F5B93 url(/images/mobile-menu.png) no-repeat center center;
+    background: #4F5B93 url(images/mobile-menu.png) no-repeat center center;
     float: right;
     display: block;
     height: 32px;
