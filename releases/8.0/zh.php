@@ -17,7 +17,7 @@ releases\php80\common_header(
   </div>
   <div class="php8-section__content">
     <div class="php8-logo">
-      <img src="/images/php8/logo_php8.svg" alt="php8" height="126" width="343">
+      <img src="images/php8/logo_php8.svg" alt="php8" height="126" width="343">
     </div>
     <div class="php8-title">已发布！</div>
     <div class="php8-subtitle">
