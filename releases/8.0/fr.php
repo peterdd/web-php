@@ -376,7 +376,7 @@ array_chunk([], -1); // ValueError: array_chunk(): Argument #2 ($length) must be
     Contribution relative du JIT à la performance de PHP 8
   </h3>
   <p>
-    <img src="/images/php8/scheme.svg" width="900" alt="Just-In-Time compilation">
+    <img src="images/php8/scheme.svg" width="900" alt="Just-In-Time compilation">
   </p>
 
   <div class="php8-columns">
