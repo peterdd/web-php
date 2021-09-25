@@ -393,12 +393,17 @@ if (!isset($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] != "on") {
     $proto = "https";
 }
 
+/**
+ * @todo setup a real $config array
+ */
+$config['basedir']= '/';
+
 if($_SERVER["SERVER_PORT"] != '80' && $_SERVER["SERVER_PORT"] != 443) {
-    $MYSITE = $proto . '://' . $_SERVER["SERVER_NAME"] . ':' . (int)$_SERVER["SERVER_PORT"] .dirname($_SERVER['SCRIPT_NAME']);
-    $msite  =      'http://' . $_SERVER["SERVER_NAME"] . ':' . (int)$_SERVER["SERVER_PORT"] .dirname($_SERVER['SCRIPT_NAME']);
+    $MYSITE = $proto . '://' . $_SERVER["SERVER_NAME"] . ':' . (int)$_SERVER["SERVER_PORT"] .$config['basedir'];
+    $msite  =      'http://' . $_SERVER["SERVER_NAME"] . ':' . (int)$_SERVER["SERVER_PORT"] .$config['basedir'];
 } else {
-    $MYSITE = $proto . '://' . $_SERVER["SERVER_NAME"] . dirname($_SERVER['SCRIPT_NAME']);
-    $msite  =     'https://' . $_SERVER["SERVER_NAME"] . dirname($_SERVER['SCRIPT_NAME']);
+    $MYSITE = $proto . '://' . $_SERVER["SERVER_NAME"] . $config['basedir'];
+    $msite  =     'https://' . $_SERVER["SERVER_NAME"] . $config['basedir'];
 }
 
 
@@ -423,8 +428,8 @@ if (!isset($LANGUAGES[$MIRRORS[$MYSITE][6]])) {
 
 // Provide base href information to make relative links on
 // shortcut URL accessed pages work without redirection
-if (isset($_SERVER['BASE_PAGE'])) {
-    $_SERVER['BASE_HREF'] = $MYSITE .'/'. $_SERVER['BASE_PAGE'];
-} else {
-    $_SERVER['BASE_HREF'] = $MYSITE;
-}
+#if (isset($_SERVER['BASE_PAGE'])) {
+#    $_SERVER['BASE_HREF'] = $MYSITE .'/'. $_SERVER['BASE_PAGE'];
+#} else {
+    $_SERVER['BASE_HREF'] = $MYSITE.'/';
+#}
