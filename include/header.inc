@@ -55,8 +55,10 @@ if (!isset($config["languages"])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>PHP: <?php echo $title ?></title>
-
- <link rel="shortcut icon" href="<?php echo $MYSITE ?>favicon.ico">
+<?php if (!empty($_SERVER["BASE_HREF"])): ?>
+ <base href="<?php echo $_SERVER["BASE_HREF"] ?>">
+<?php endif ?>
+ <link rel="shortcut icon" href="<?php echo $MYSITE ?>/favicon.ico">
  <link rel="search" type="application/opensearchdescription+xml" href="http://php.net/phpnetimprovedsearch.src" title="Add PHP.net search">
  <link rel="alternate" type="application/atom+xml" href="<?php echo $MYSITE ?>releases/feed.php" title="PHP Release feed">
  <link rel="alternate" type="application/atom+xml" href="<?php echo $MYSITE ?>feed.atom" title="PHP: Hypertext Preprocessor">
@@ -99,9 +101,6 @@ if (!isset($config["languages"])) {
  <script src="<?php echo $MYSITE ?>js/ext/html5.js"></script>
  <![endif]-->
 
-<?php if (!empty($_SERVER["BASE_HREF"])): ?>
- <base href="<?php echo $_SERVER["BASE_HREF"] ?>">
-<?php endif ?>
 
 <?php if (isset($config['meta_tags'])) { echo $config['meta_tags']; } ?>
 
